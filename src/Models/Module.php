@@ -28,6 +28,8 @@ use Dwij\Laraadmin\Helpers\TableShemaTraitHelper;
  */
 class Module extends Model
 {
+    use TableShemaTraitHelper;
+
     protected $table = 'modules';
 
     protected $fillable = [

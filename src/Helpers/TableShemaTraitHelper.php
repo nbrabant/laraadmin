@@ -17,6 +17,7 @@ trait TableShemaTraitHelper
 		\Log::debug('Module:create_field_schema ('.$update.') - '.$field->colname." - ".$field->field_type
 				." - ".$defval." - ".$field->maxlength);
 
+		// @TODO : really need to cleanup this process - using factory pattern?
 		switch ($field->field_type) {
 			case 'Address':
 				$var = null;
@@ -27,35 +28,35 @@ trait TableShemaTraitHelper
 						$var = $table->text($field->colname);
 					}
 				} else {
-					if($update) {
+					if ($update) {
 						$var = $table->string($field->colname, $field->maxlength)->change();
 					} else {
 						$var = $table->string($field->colname, $field->maxlength);
 					}
 				}
-				if($field->defaultvalue != "") {
-					$var->default($field->defaultvalue);
-				} else if($field->required) {
+
+				if ($field->required) {
 					$var->default("");
+				} elseif (is_null($field->defaultvalue) || $field->defaultvalue == 'NULL') {
+					$var->nullable()->default(null);
+				} else {
+					$var->default($field->defaultvalue);
 				}
 				break;
 			case 'Checkbox':
-				if($update) {
+				if ($update) {
 					$var = $table->boolean($field->colname)->change();
 				} else {
 					$var = $table->boolean($field->colname);
 				}
-				if($field->defaultvalue == "true" || $field->defaultvalue == "false" || $field->defaultvalue == true || $field->defaultvalue == false) {
-					if(is_string($field->defaultvalue)) {
-						if($field->defaultvalue == "true") {
-							$field->defaultvalue = true;
-						} else {
-							$field->defaultvalue = false;
-						}
+
+				if ($field->required) {
+					$field->defaultvalue = false;
+				} elseif ($field->defaultvalue == "true" || $field->defaultvalue == "false" || $field->defaultvalue == true || $field->defaultvalue == false) {
+					if (is_string($field->defaultvalue)) {
+						$field->defaultvalue = (bool)($field->defaultvalue == "true");
 					}
 					$var->default($field->defaultvalue);
-				} else if($field->required) {
-					$field->defaultvalue = false;
 				}
 				break;
 			case 'Currency':
@@ -64,10 +65,13 @@ trait TableShemaTraitHelper
 				} else {
 					$var = $table->double($field->colname, 15, 2);
 				}
-				if($field->defaultvalue != "") {
-					$var->default($field->defaultvalue);
-				} else if($field->required) {
+
+				if ($field->required) {
 					$var->default("0.0");
+				} elseif (is_null($field->defaultvalue) || $field->defaultvalue == 'NULL') {
+					$var->nullable()->default(null);
+				} else {
+					$var->default($field->defaultvalue);
 				}
 				break;
 			case 'Date':
@@ -76,10 +80,13 @@ trait TableShemaTraitHelper
 				} else {
 					$var = $table->date($field->colname);
 				}
-				if($field->defaultvalue != "" && !starts_with($field->defaultvalue, "date")) {
-					$var->default($field->defaultvalue);
-				} else if($field->required) {
+
+				if($field->required) {
 					$var->default("1970-01-01");
+				} elseif (is_null($field->defaultvalue) || $field->defaultvalue == 'NULL' || $field->defaultvalue === "") {
+					$var->nullable()->default(null);
+				} else if(!starts_with($field->defaultvalue, "date")) {
+					$var->default($field->defaultvalue);
 				}
 				break;
 			case 'Datetime':
@@ -91,10 +98,14 @@ trait TableShemaTraitHelper
 					$var = $table->timestamp($field->colname);
 				}
 				// $table->timestamp('created_at')->useCurrent();
-				if(isset($var) && $field->defaultvalue != "" && !starts_with($field->defaultvalue, "date")) {
-					$var->default($field->defaultvalue);
-				} else if($field->required) {
+				if($field->required) {
 					$var->default("1970-01-01 01:01:01");
+				} elseif (isset($var)) {
+					if (is_null($field->defaultvalue) || $field->defaultvalue == 'NULL' || $field->defaultvalue === "") {
+						$var->nullable()->default(null);
+					} else if (!starts_with($field->defaultvalue, "date")) {
+						$var->default($field->defaultvalue);
+					}
 				}
 				break;
 			case 'Decimal':
@@ -104,10 +115,13 @@ trait TableShemaTraitHelper
 				} else {
 					$var = $table->decimal($field->colname, 15, 3);
 				}
-				if($field->defaultvalue != "") {
-					$var->default($field->defaultvalue);
-				} else if($field->required) {
+
+				if ($field->required) {
 					$var->default("0.0");
+				} elseif (is_null($field->defaultvalue) || $field->defaultvalue == 'NULL') {
+					$var->nullable()->default(null);
+				} else {
+					$var->default($field->defaultvalue);
 				}
 				break;
 			case 'Dropdown':
@@ -190,10 +204,13 @@ trait TableShemaTraitHelper
 						$var = $table->string($field->colname, $field->maxlength);
 					}
 				}
-				if($field->defaultvalue != "") {
-					$var->default($field->defaultvalue);
-				} else if($field->required) {
+
+				if ($field->required) {
 					$var->default("");
+				} elseif (is_null($field->defaultvalue) || $field->defaultvalue == 'NULL') {
+					$var->nullable()->default(null);
+				} else {
+					$var->default($field->defaultvalue);
 				}
 				break;
 			case 'File':
@@ -470,10 +487,13 @@ trait TableShemaTraitHelper
 					} else {
 						$var = $table->string($field->colname, $field->maxlength);
 					}
-					if($field->defaultvalue != "") {
-						$var->default($field->defaultvalue);
-					} else if($field->required) {
+
+					if($field->required) {
 						$var->default("");
+					} elseif (is_null($field->defaultvalue) || $field->defaultvalue == 'NULL') {
+						$var->nullable()->default(null);
+					} else {
+						$var->default($field->defaultvalue);
 					}
 				}
 				break;
@@ -523,16 +543,16 @@ trait TableShemaTraitHelper
 
 		// set column unique
 		// @TODO test : unique column key must be defined on the migration, not on the shema helper
-		if($update) {
-			if($isFieldTypeChange) {
-				if($field->unique && $var != null && $field->maxlength < 256) {
-					$table->unique($field->colname);
-				}
-			}
-		} else {
-			if($field->unique && $var != null && $field->maxlength < 256) {
-				$table->unique($field->colname);
-			}
-		}
+		// if($update) {
+		// 	if($isFieldTypeChange) {
+		// 		if($field->unique && $var != null && $field->maxlength < 256) {
+		// 			$table->unique($field->colname);
+		// 		}
+		// 	}
+		// } else {
+		// 	if($field->unique && $var != null && $field->maxlength < 256) {
+		// 		$table->unique($field->colname);
+		// 	}
+		// }
 	}
 }

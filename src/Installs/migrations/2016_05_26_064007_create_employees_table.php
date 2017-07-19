@@ -165,7 +165,7 @@ class CreateEmployeesTable extends Migration
                 "listing_col" => false
             ]
         ]);
-        
+
         /*
         Module::generate("Module_Name", "Table_Name", "view_column_name" "Fields_Array");
 

@@ -5,7 +5,7 @@ use Illuminate\Database\Seeder;
 use Dwij\Laraadmin\Models\Module;
 use Dwij\Laraadmin\Models\ModuleFields;
 use Dwij\Laraadmin\Models\ModuleFieldTypes;
-use Dwij\Laraadmin\Models\Admintab;
+use Dwij\Laraadmin\Models\Menu;
 
 
 class AdmintabTableSeeder extends Seeder
@@ -19,7 +19,7 @@ class AdmintabTableSeeder extends Seeder
     {
        // Generating Module Menus
         $modules = Module::all();
-        $teamMenu = Admintab::create([
+        $teamMenu = Menu::create([
             "name" => "Team",
             "url" => "#",
             "icon" => "fa-group",
@@ -33,7 +33,7 @@ class AdmintabTableSeeder extends Seeder
                 if(in_array($module->name, ["Users", "Departments", "Employees", "Roles", "Permissions"])) {
                     $parent = $teamMenu->id;
                 }
-                Admintab::create([
+                Menu::create([
                     "name" => $module->name,
                     "url" => $module->name_db,
                     "icon" => $module->fa_icon,

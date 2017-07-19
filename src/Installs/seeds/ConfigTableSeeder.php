@@ -34,7 +34,7 @@ class ConfigTableSeeder extends Seeder
     public function run()
     {
         foreach ($this->data as $row) {
-            Configs::create([
+            LAConfigs::create([
                 'key'   => $row['key'],
                 'value' => $row['value'],
             ]);

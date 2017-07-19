@@ -24,19 +24,29 @@ class Packaging extends Command
 {
     // The command signature.
     var $modelsInstalled = ["User", "Role", "Permission", "Employee", "Department", "Upload", "Organization", "Backup"];
-    
+
     // The command description.
     protected $signature = 'la:packaging';
-    
+
     // Copy From Folder - Package Install Files
     protected $description = '[Developer Only] - Copy LaraAdmin-Dev files to package: "dwij/laraadmin"';
-    
+
     // Copy to Folder - Project Folder
     protected $from;
-    
+
     // Model Names to be handled during Packaging
     protected $to;
-    
+
+    protected $basepath = '';
+
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->basepath = str_replace([base_path() . '\\', 'Commands'], '', __DIR__) . 'Installs';
+    }
+
     /**
      * Copy Project changes into LaraAdmin package.
      *
@@ -45,22 +55,22 @@ class Packaging extends Command
     public function handle()
     {
         $this->info('Exporting started...');
-        
+
         $from = base_path();
-        $to = base_path('vendor/dwij/laraadmin/src/Installs');
-        
+        $to = base_path($this->basepath);
+
         $this->info('from: ' . $from . " to: " . $to);
-        
+
         // Controllers
         $this->line('Exporting Controllers...');
         $this->replaceFolder($from . "/app/Http/Controllers/Auth", $to . "/app/Controllers/Auth");
         $this->replaceFolder($from . "/app/Http/Controllers/LA", $to . "/app/Controllers/LA");
         $this->copyFile($from . "/app/Http/Controllers/Controller.php", $to . "/app/Controllers/Controller.php");
         $this->copyFile($from . "/app/Http/Controllers/HomeController.php", $to . "/app/Controllers/HomeController.php");
-        
+
         // Models
         $this->line('Exporting Models...');
-        
+
         foreach($this->modelsInstalled as $model) {
             if($model == "User" || $model == "Role" || $model == "Permission") {
                 $this->copyFile($from . "/app/" . $model . ".php", $to . "/app/Models/" . $model . ".php");
@@ -68,7 +78,7 @@ class Packaging extends Command
                 $this->copyFile($from . "/app/Models/" . $model . ".php", $to . "/app/Models/" . $model . ".php");
             }
         }
-        
+
         // Routes
         $this->line('Exporting Routes...');
         if(LAHelper::laravel_ver() >= 5.3) {
@@ -78,38 +88,41 @@ class Packaging extends Command
             // $this->copyFile($from."/app/Http/routes.php", $to."/app/routes.php"); // Not needed anymore
             $this->copyFile($from . "/app/Http/admin_routes.php", $to . "/app/admin_routes.php");
         }
-        
+
         // tests
         $this->line('Exporting tests...');
         $this->replaceFolder($from . "/tests", $to . "/tests");
-        
+
         // Config
         $this->line('Exporting Config...');
         $this->copyFile($from . "/config/laraadmin.php", $to . "/config/laraadmin.php");
-        
+
         // la-assets
         $this->line('Exporting LaraAdmin Assets...');
         $this->replaceFolder($from . "/public/la-assets", $to . "/la-assets");
         // Use "git config core.fileMode false" for ignoring file permissions
-        
+
         // migrations
         $this->line('Exporting migrations...');
         $this->replaceFolder($from . "/database/migrations", $to . "/migrations");
-        
+
         // seeds
         $this->line('Exporting seeds...');
-        $this->copyFile($from . "/database/seeds/DatabaseSeeder.php", $to . "/seeds/DatabaseSeeder.php");
-        
+        $this->copyFile($from . "/seeds/DatabaseSeeder.php",      $to . "/database/seeds/DatabaseSeeder.php");
+        $this->copyFile($from . "/seeds/ConfigTableSeeder.php",   $to . "/database/seeds/ConfigTableSeeder.php");
+        $this->copyFile($from . "/seeds/AdmintabTableSeeder.php", $to . "/database/seeds/AdmintabTableSeeder.php");
+        $this->copyFile($from . "/seeds/RoleTableSeeder.php",     $to . "/database/seeds/RoleTableSeeder.php");
+
         // resources
         $this->line('Exporting resources: assets + views...');
         $this->replaceFolder($from . "/resources/assets", $to . "/resources/assets");
         $this->replaceFolder($from . "/resources/views", $to . "/resources/views");
-        
-        // Utilities 
+
+        // Utilities
         $this->line('Exporting Utilities...');
         // $this->copyFile($from."/gulpfile.js", $to."/gulpfile.js"); // Temporarily Not used.
     }
-    
+
     /**
      * Replace Folder contents by deleting content of to folder first
      *
@@ -124,7 +137,7 @@ class Packaging extends Command
         }
         LAHelper::recurse_copy($from, $to);
     }
-    
+
     /**
      * Copy file contents. If file not exists create it.
      *
