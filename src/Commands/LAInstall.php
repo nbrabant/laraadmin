@@ -232,11 +232,13 @@ class LAInstall extends Command
                 $this->copyFile($from . "/resources/lang/fr/auth.php",   $to . "/resources/lang/fr/auth.php");
                 $this->copyFile($from . "/resources/lang/fr/errors.php", $to . "/resources/lang/fr/errors.php");
                 $this->copyFile($from . "/resources/lang/fr/emails.php", $to . "/resources/lang/fr/emails.php");
+                $this->copyFile($from . "/resources/lang/fr/pagination.php", $to . "/resources/lang/fr/pagination.php");
 
                 $this->copyFile($from . "/resources/lang/en/global.php", $to . "/resources/lang/en/global.php");
                 $this->copyFile($from . "/resources/lang/en/auth.php",   $to . "/resources/lang/en/auth.php");
                 $this->copyFile($from . "/resources/lang/en/errors.php", $to . "/resources/lang/en/errors.php");
                 $this->copyFile($from . "/resources/lang/en/emails.php", $to . "/resources/lang/en/emails.php");
+                $this->copyFile($from . "/resources/lang/en/pagination.php", $to . "/resources/lang/en/pagination.php");
                 // end todo
 
                 // Checking database

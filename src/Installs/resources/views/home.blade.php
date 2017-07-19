@@ -52,7 +52,7 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#home" class="smoothScroll">Home</a></li>
+                <li class="active"><a href="#home" class="smoothScroll">@lang('global.home')</a></li>
                 <li><a href="#about" class="smoothScroll">About</a></li>
                 <li><a href="#contact" class="smoothScroll">Contact</a></li>
             </ul>
