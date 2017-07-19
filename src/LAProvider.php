@@ -210,6 +210,14 @@ class LAProvider extends ServiceProvider
             return "<?php } ?>";
         });
 
+        // LA Traduce - get translation or default value
+        Blade::directive('la_translate', function ($expression) {
+            if(LAHelper::laravel_ver() >= 5.3) {
+                $expression = "(" . $expression . ")";
+            }
+            return "<?php echo LATranslate::getTranslation$expression; ?>";
+        }
+
         /*
         |--------------------------------------------------------------------------
         | Register the Commands
