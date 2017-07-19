@@ -1,6 +1,9 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
+		@la_translate('contentheader_title', 'Page Header here')
+        <small>@la_translate('contentheader_description')</small>
+		
         @yield('contentheader_title', 'Page Header here')
         <small>@yield('contentheader_description')</small>
     </h1>
@@ -8,7 +11,7 @@
         <span class="headerElems">
         @yield('headerElems')
         </span>
-    @else 
+    @else
         @hasSection('section')
         <ol class="breadcrumb">
             <li><a href="@yield('section_url')"><i class="fa fa-dashboard"></i> @yield('section')</a></li>

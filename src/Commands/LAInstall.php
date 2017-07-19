@@ -228,17 +228,19 @@ class LAInstall extends Command
                 // list lang resources
                 // If file exists, add only the new localisation lines
                 // overelse, copy them on the directory
-                $this->copyFile($from . "/resources/lang/fr/global.php", $to . "/resources/lang/fr/global.php");
-                $this->copyFile($from . "/resources/lang/fr/auth.php",   $to . "/resources/lang/fr/auth.php");
-                $this->copyFile($from . "/resources/lang/fr/errors.php", $to . "/resources/lang/fr/errors.php");
-                $this->copyFile($from . "/resources/lang/fr/emails.php", $to . "/resources/lang/fr/emails.php");
-                $this->copyFile($from . "/resources/lang/fr/pagination.php", $to . "/resources/lang/fr/pagination.php");
+                $this->copyFile($from . "/resources/lang/fr.json", 				$to . "/resources/lang/fr.json");
+                $this->copyFile($from . "/resources/lang/fr/global.php", 		$to . "/resources/lang/fr/global.php");
+                $this->copyFile($from . "/resources/lang/fr/auth.php",   		$to . "/resources/lang/fr/auth.php");
+                $this->copyFile($from . "/resources/lang/fr/errors.php", 		$to . "/resources/lang/fr/errors.php");
+                $this->copyFile($from . "/resources/lang/fr/emails.php", 		$to . "/resources/lang/fr/emails.php");
+                $this->copyFile($from . "/resources/lang/fr/pagination.php", 	$to . "/resources/lang/fr/pagination.php");
 
-                $this->copyFile($from . "/resources/lang/en/global.php", $to . "/resources/lang/en/global.php");
-                $this->copyFile($from . "/resources/lang/en/auth.php",   $to . "/resources/lang/en/auth.php");
-                $this->copyFile($from . "/resources/lang/en/errors.php", $to . "/resources/lang/en/errors.php");
-                $this->copyFile($from . "/resources/lang/en/emails.php", $to . "/resources/lang/en/emails.php");
-                $this->copyFile($from . "/resources/lang/en/pagination.php", $to . "/resources/lang/en/pagination.php");
+				$this->copyFile($from . "/resources/lang/en.json", 				$to . "/resources/lang/en.json");
+                $this->copyFile($from . "/resources/lang/en/global.php", 		$to . "/resources/lang/en/global.php");
+                $this->copyFile($from . "/resources/lang/en/auth.php",   		$to . "/resources/lang/en/auth.php");
+                $this->copyFile($from . "/resources/lang/en/errors.php", 		$to . "/resources/lang/en/errors.php");
+                $this->copyFile($from . "/resources/lang/en/emails.php", 		$to . "/resources/lang/en/emails.php");
+                $this->copyFile($from . "/resources/lang/en/pagination.php", 	$to . "/resources/lang/en/pagination.php");
                 // end todo
 
                 // Checking database
