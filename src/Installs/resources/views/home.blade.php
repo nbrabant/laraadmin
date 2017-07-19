@@ -9,22 +9,22 @@
     <meta property="og:title" content="{{ LAConfigs::getByKey('sitename') }}" />
     <meta property="og:type" content="website" />
     <meta property="og:description" content="{{ LAConfigs::getByKey('site_description') }}" />
-    
+
     <meta property="og:url" content="http://laraadmin.com/" />
     <meta property="og:sitename" content="laraAdmin" />
 	<meta property="og:image" content="http://demo.adminlte.acacha.org/img/LaraAdmin-600x600.jpg" />
-    
+
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@laraadmin" />
     <meta name="twitter:creator" content="@laraadmin" />
-    
+
     <title>{{ LAConfigs::getByKey('sitename') }}</title>
-    
+
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('/la-assets/css/bootstrap.css') }}" rel="stylesheet">
 
 	<link href="{{ asset('la-assets/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css" />
-    
+
     <!-- Custom styles for this template -->
     <link href="{{ asset('/la-assets/css/main.css') }}" rel="stylesheet">
 
@@ -58,8 +58,8 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 @if (Auth::guest())
-                    <li><a href="{{ url('/login') }}">Login</a></li>
-                    <!--<li><a href="{{ url('/register') }}">Register</a></li>-->
+                    <li><a href="{{ url('/login') }}">@lang('auth.login')</a></li>
+                    <!--<li><a href="{{ url('/register') }}">@lang('auth.register')</a></li>-->
                 @else
                     <li><a href="{{ url(config('laraadmin.adminRoute')) }}">{{ Auth::user()->name }}</a></li>
                 @endif

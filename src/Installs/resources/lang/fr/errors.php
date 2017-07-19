@@ -9,5 +9,6 @@ return [
     'page_not_found' => 'Page introuvable',
     'record_not_found' => 'La ligne #:id (:name) est introuvable',
 
+    'whoops' => '<strong>Ouups!</strong> Il y a une erreur dans votre saisie',
 
 ];

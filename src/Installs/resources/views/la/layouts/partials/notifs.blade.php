@@ -97,8 +97,8 @@
 				</li>
 				@endif
 				@if (Auth::guest())
-					<li><a href="{{ url('/login') }}">Login</a></li>
-					<li><a href="{{ url('/register') }}">Register</a></li>
+					<li><a href="{{ url('/login') }}">@lang('auth.login')</a></li>
+					<li><a href="{{ url('/register') }}">@lang('auth.register')</a></li>
 				@else
 					<!-- User Account Menu -->
 					<li class="dropdown user user-menu">
@@ -147,7 +147,7 @@
 									<a href="{{ url(config('laraadmin.adminRoute') . '/users/') .'/'. Auth::user()->id }}" class="btn btn-default btn-flat">Profile</a>
 								</div>
 								<div class="pull-right">
-									<a href="{{ url('/logout') }}" class="btn btn-default btn-flat">Sign out</a>
+									<a href="{{ url('/logout') }}" class="btn btn-default btn-flat">@lang('auth.logout')</a>
 								</div>
 							</li>
 						</ul>
@@ -157,7 +157,7 @@
 				<!-- Control Sidebar Toggle Button -->
 				<li>
 					<a href="#" data-toggle="control-sidebar"><i class="fa fa-comments-o"></i> <span class="label label-warning">10</span></a>
-					
+
 				</li>
 				@endif
 			</ul>

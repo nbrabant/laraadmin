@@ -1,7 +1,7 @@
 @extends('la.layouts.auth')
 
 @section('htmlheader_title')
-    Password recovery
+    @lang('auth.password_recovery')
 @endsection
 
 @section('content')
@@ -20,7 +20,7 @@
 
         @if (count($errors) > 0)
             <div class="alert alert-danger">
-                <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                @lang('errors.whoops').<br><br>
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -30,11 +30,11 @@
         @endif
 
         <div class="login-box-body">
-            <p class="login-box-msg">Reset Password</p>
+            <p class="login-box-msg">@lang('auth.reset_password')</p>
             <form action="{{ url('/password/email') }}" method="post">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="form-group has-feedback">
-                    <input type="email" class="form-control" placeholder="Email" name="email" value="{{ old('email') }}"/>
+                    <input type="email" class="form-control" placeholder="@lang('auth.email')" name="email" value="{{ old('email') }}"/>
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                 </div>
 
@@ -42,14 +42,14 @@
                     <div class="col-xs-2">
                     </div><!-- /.col -->
                     <div class="col-xs-8">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat">Send Password Reset Link</button>
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">@lang('auth.password_reset_link')</button>
                     </div><!-- /.col -->
                     <div class="col-xs-2">
                     </div><!-- /.col -->
                 </div>
             </form>
 
-            <a href="{{ url('/login') }}">Log in</a><br>
+            <a href="{{ url('/login') }}">@lang('auth.login')</a><br>
             <!--<a href="{{ url('/register') }}" class="text-center">Register a new membership</a>-->
 
         </div><!-- /.login-box-body -->

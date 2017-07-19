@@ -14,6 +14,7 @@ return [
     ],
 
     'change_password' => [
+      'reset_link' => 'Click here to reset your password',
       'credentials' => 'Your login credentials are changed',
     ]
 

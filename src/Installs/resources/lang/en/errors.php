@@ -9,5 +9,7 @@ return [
     'page_not_found' => 'Page not found',
     'record_not_found' => ':name with id :id not found',
 
+    'whoops' => '<strong>Whoops!</strong> There were some problems with your input',
+
 
 ];

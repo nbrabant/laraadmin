@@ -14,6 +14,7 @@ return [
     ],
 
     'change_password' => [
+      'reset_link' => 'Cliquez sur ce lien pour réinitialiser votre mot de passe',
       'credentials' => 'Vos identifiants de connexion ont été modifiés',
     ]
 
