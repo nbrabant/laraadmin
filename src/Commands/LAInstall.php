@@ -70,11 +70,11 @@ class LAInstall extends Command
             $this->info('from: ' . $from . " to: " . $to);
 
             $this->line("\nDB Assistant:");
-            if($this->confirm("Want to set your Database config in the .env file ?", true)) {
+            if ($this->confirm("Want to set your Database config in the .env file ?", true)) {
                 $this->line("DB Assistant Initiated....");
                 $db_data = array();
 
-                if(LAHelper::laravel_ver() >= 5.3) {
+                if (LAHelper::laravel_ver() >= 5.3) {
                     $db_data['host'] = $this->ask('Database Host', '127.0.0.1');
                     $db_data['port'] = $this->ask('Database Port', '3306');
                 }
