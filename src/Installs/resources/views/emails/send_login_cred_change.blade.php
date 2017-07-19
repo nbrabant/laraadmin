@@ -1,10 +1,10 @@
-Dear {{ $user->name }},<br><br>
+@lang('emails.dear_name', ['name' => $user->name]),<br><br>
 
-Your login credentials are changed:<br><br>
+@lang('emails.change_password.credentials'):<br><br>
 
-Username: {{ $user->email }}<br>
-password: {{ $password }}<br><br>
+@lang('emails.name'): {{ $user->email }}<br>
+@lang('emails.password'): {{ $password }}<br><br>
 
-You can login on <a href="{{ url('/login') }}">{{ str_replace("http://", "", url('/login')) }}</a>.<br><br>
+@lang('emails.access_link', ['url' => url('/login'), 'link' => str_replace("http://", "", url('/login'))]).<br><br>
 
-Best Regards,
+@lang('emails.regards'),

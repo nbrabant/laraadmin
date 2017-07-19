@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Be right back.</title>
+        <title>@lang('errors.error500').</title>
 
         <link href="https://fonts.googleapis.com/css?family=Roboto:200,400" rel="stylesheet" type="text/css">
 		<link href="{{ asset('la-assets/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css" />
@@ -48,7 +48,7 @@
         <div class="container">
             <div class="content">
 				<i class="fa fa-wrench" style="font-size:120px;color:#666;margin-bottom:30px;"></i>
-                <div class="title">Be right back</div>
+                <div class="title">@lang('errors.error500')</div>
 				@if(Auth::guest())
 					<a href="{{ url('/') }}">@lang('global.homepage')</a> |
 					<a href="javascript:history.back()">@lang('global.go_back')</a>

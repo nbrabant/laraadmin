@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Page / Record not found.</title>
+        <title>@lang('errors.error404').</title>
 
         <link href="https://fonts.googleapis.com/css?family=Roboto:200,400" rel="stylesheet" type="text/css">
 		<link href="{{ asset('la-assets/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css" />
@@ -49,9 +49,9 @@
             <div class="content">
 				<i class="fa fa-search" style="font-size:120px;color:#FF5959;margin-bottom:30px;"></i>
                 @if(isset($record_name) && isset($record_id))
-					<div class="title">{{ $record_name }} with id {{ $record_id }} not found</div>
+					<div class="title">@lang('errors.record_not_found', ['name' => $record_name, 'id' => $record_id])</div>
 				@else
-					<div class="title">Page not found</div>
+					<div class="title">@lang('errors.page_not_found')</div>
 				@endif
 
 				@if(Auth::guest())
