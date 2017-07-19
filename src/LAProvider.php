@@ -216,7 +216,7 @@ class LAProvider extends ServiceProvider
                 $expression = "(" . $expression . ")";
             }
             return "<?php echo LATranslate::getTranslation$expression; ?>";
-        }
+        });
 
         /*
         |--------------------------------------------------------------------------
