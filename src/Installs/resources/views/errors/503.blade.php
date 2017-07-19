@@ -50,11 +50,11 @@
 				<i class="fa fa-wrench" style="font-size:120px;color:#666;margin-bottom:30px;"></i>
                 <div class="title">Be right back</div>
 				@if(Auth::guest())
-					<a href="{{ url('/') }}">Homepage</a> | 
-					<a href="javascript:history.back()">Go Back</a>
+					<a href="{{ url('/') }}">@lang('global.homepage')</a> |
+					<a href="javascript:history.back()">@lang('global.go_back')</a>
 				@else
-					<a href="{{ url(config('laraadmin.adminRoute')) }}">Dashboard.</a> | 
-					<a href="javascript:history.back()">Go Back</a>
+					<a href="{{ url(config('laraadmin.adminRoute')) }}">@lang('global.dashboard').</a> |
+					<a href="javascript:history.back()">@lang('global.go_back')</a>
 				@endif
             </div>
         </div>

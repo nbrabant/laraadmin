@@ -1,7 +1,7 @@
 @extends('la.layouts.app')
 
-@section('htmlheader_title') Dashboard @endsection
-@section('contentheader_title') Dashboard @endsection
+@section('htmlheader_title') @lang('global.dashboard') @endsection
+@section('contentheader_title') @lang('global.dashboard') @endsection
 @section('contentheader_description') Organization Overview @endsection
 
 @section('main-content')
