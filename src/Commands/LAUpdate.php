@@ -15,7 +15,7 @@ use DB;
  *
  * Command to process updating LaraAdmin package into project which merges files from 'src/Installs' directory to Project
  */
-class LAInstall extends Command
+class LAUpdate extends Command
 {
 	// The command signature.
     protected $signature = 'la:update';
