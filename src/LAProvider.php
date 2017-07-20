@@ -15,6 +15,7 @@ use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 
 use Dwij\Laraadmin\Helpers\LAHelper;
+use Dwij\Laraadmin\LATranslate;
 
 /**
  * Class LAProvider
@@ -125,6 +126,9 @@ class LAProvider extends ServiceProvider
 
         // For LaraAdmin Helper
         $loader->alias('LAHelper', \Dwij\Laraadmin\Helpers\LAHelper::class);
+
+        // For LaraAdmin Translations
+        $loader->alias('LATranslate', \Dwij\Laraadmin\LATranslate::class);
 
         // LaraAdmin Module Model
         $loader->alias('Module', \Dwij\Laraadmin\Models\Module::class);
