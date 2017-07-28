@@ -79,6 +79,12 @@ class LAProvider extends ServiceProvider
      */
     public function register()
     {
+        // $this->registerFactory();
+        //
+        // $this->registerViewFinder();
+        //
+        // $this->registerEngineResolver();
+
         include __DIR__ . '/routes.php';
 
         // For LAEditor
@@ -216,10 +222,11 @@ class LAProvider extends ServiceProvider
 
         // LA Traduce - get translation or default value
         Blade::directive('la_translate', function ($expression) {
-            if(LAHelper::laravel_ver() >= 5.3) {
+            if (LAHelper::laravel_ver() >= 5.3) {
                 $expression = "(" . $expression . ")";
             }
-            return "<?php echo LATranslate::getTranslation$expression; ?>";
+
+            return "<?php echo trans(\$__env->yieldContent{$expression}); ?>";
         });
 
         /*

@@ -39,7 +39,7 @@
 		</tr>
 		</thead>
 		<tbody>
-			
+
 		</tbody>
 		</table>
 	</div>
@@ -50,14 +50,14 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<button type="button" class="close" data-dismiss="modal" aria-label="@lang('global.close')"><span aria-hidden="true">&times;</span></button>
 				<h4 class="modal-title" id="myModalLabel">Add Department</h4>
 			</div>
 			{!! Form::open(['action' => 'LA\DepartmentsController@store', 'id' => 'department-add-form']) !!}
 			<div class="modal-body">
 				<div class="box-body">
                     @la_form($module)
-					
+
 					{{--
 					@la_input($module, 'name')
 					@la_input($module, 'tags')
@@ -66,7 +66,7 @@
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">@lang('global.close')</button>
 				{!! Form::submit( 'Submit', ['class'=>'btn btn-success']) !!}
 			</div>
 			{!! Form::close() !!}
@@ -99,7 +99,7 @@ $(function () {
 		@endif
 	});
 	$("#department-add-form").validate({
-		
+
 	});
 });
 </script>

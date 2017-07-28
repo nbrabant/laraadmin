@@ -84,7 +84,7 @@
 			@la_access("Permissions", "edit")
 				<a href="{{ url(config('laraadmin.adminRoute') . '/permissions/'.$permission->id.'/edit') }}" class="btn btn-xs btn-edit btn-default"><i class="fa fa-pencil"></i></a><br>
 			@endla_access
-			
+
 			@la_access("Permissions", "delete")
 				{{ Form::open(['route' => [config('laraadmin.adminRoute') . '.permissions.destroy', $permission->id], 'method' => 'delete', 'style'=>'display:inline']) }}
 					<button class="btn btn-default btn-delete btn-xs" type="submit"><i class="fa fa-times"></i></button>
@@ -97,7 +97,7 @@
 		<li class=""><a href="{{ url(config('laraadmin.adminRoute') . '/permissions') }}" data-toggle="tooltip" data-placement="right" title="Back to Permissions"><i class="fa fa-chevron-left"></i></a></li>
 		<li class="active"><a role="tab" data-toggle="tab" class="active" href="#tab-general-info" data-target="#tab-info"><i class="fa fa-bars"></i> General Info</a></li>
 		@role("SUPER_ADMIN")
-		<li class=""><a role="tab" data-toggle="tab" href="#tab-access" data-target="#tab-access"><i class="fa fa-key"></i> Access</a></li>
+		<li class=""><a role="tab" data-toggle="tab" href="#tab-access" data-target="#tab-access"><i class="fa fa-key"></i> @lang('global.access')</a></li>
 		@endrole
 	</ul>
 
@@ -141,7 +141,7 @@
 									</div>
 								</div>
 							@endforeach
-							
+
 							<div class="form-group">
 								<label for="ratings_innovation" class="col-md-2"></label>
 								<div class="col-md-10 fvalue star_class">

@@ -23,7 +23,7 @@ use Dwij\Laraadmin\Models\Module;
 			<div class="col-md-4 col-lg-4">
 				<div class="nav-tabs-custom">
 					<ul class="nav nav-tabs">
-						<li class="active"><a href="#tab-modules" data-toggle="tab">Modules</a></li>
+						<li class="active"><a href="#tab-modules" data-toggle="tab">@lang('global.modules')</a></li>
 						<li><a href="#tab-custom-link" data-toggle="tab">Custom Links</a></li>
 					</ul>
 					<div class="tab-content">
@@ -35,7 +35,7 @@ use Dwij\Laraadmin\Models\Module;
 							</ul>
 						</div>
 						<div class="tab-pane" id="tab-custom-link">
-							
+
 							{!! Form::open(['action' => '\Dwij\Laraadmin\Controllers\MenuController@store', 'id' => 'menu-custom-form']) !!}
 								<input type="hidden" name="type" value="custom">
 								<div class="form-group">
@@ -76,7 +76,7 @@ use Dwij\Laraadmin\Models\Module;
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<button type="button" class="close" data-dismiss="modal" aria-label="@lang('global.close')"><span aria-hidden="true">&times;</span></button>
 				<h4 class="modal-title" id="myModalLabel">Edit Menu Item</h4>
 			</div>
 			{!! Form::open(['action' => ['\Dwij\Laraadmin\Controllers\MenuController@update', 1], 'id' => 'menu-edit-form']) !!}
@@ -102,7 +102,7 @@ use Dwij\Laraadmin\Models\Module;
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">@lang('global.close')</button>
 				{!! Form::submit( 'Submit', ['class'=>'btn btn-success']) !!}
 			</div>
 			{!! Form::close() !!}
@@ -138,12 +138,12 @@ $(function () {
 		});
 	});
 	$("#menu-custom-form").validate({
-		
+
 	});
 
 	$("#menu-nestable .editMenuBtn").on("click", function() {
 		var info = JSON.parse($(this).attr("info"));
-		
+
 		var url = $("#menu-edit-form").attr("action");
 		index = url.lastIndexOf("/");
 		url2 = url.substring(0, index+1)+info.id;
@@ -156,9 +156,9 @@ $(function () {
 	});
 
 	$("#menu-edit-form").validate({
-		
+
 	});
-	
+
 	$("#tab-modules .addModuleMenu").on("click", function() {
 		var module_id = $(this).attr("module_id");
 		$.ajax({

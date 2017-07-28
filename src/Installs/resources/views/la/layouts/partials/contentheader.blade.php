@@ -1,10 +1,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-		@la_translate('contentheader_title', 'Page Header here')
-        <small>@la_translate('contentheader_description')</small>
-		
-        @yield('contentheader_title', 'Page Header here')
+        @yield('contentheader_title', trans('global.page_header_here'))
         <small>@yield('contentheader_description')</small>
     </h1>
     @hasSection('headerElems')

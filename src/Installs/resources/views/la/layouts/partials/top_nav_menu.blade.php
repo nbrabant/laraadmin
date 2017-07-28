@@ -12,7 +12,7 @@
 				?>
 				@la_access($temp_module_obj->id)
 					@if(isset($module->id) && $module->name == $menu->name)
-						<?php echo LAHelper::print_menu_topnav($menu ,true); ?>
+						<?php echo LAHelper::print_menu_topnav($menu, true); ?>
 					@else
 						<?php echo LAHelper::print_menu_topnav($menu); ?>
 					@endif
@@ -25,7 +25,7 @@
 	@if(LAConfigs::getByKey('sidebar_search'))
 	<form class="navbar-form navbar-left" role="search">
 		<div class="form-group">
-			<input type="text" class="form-control" id="navbar-search-input" placeholder="Search">
+			<input type="text" class="form-control" id="navbar-search-input" placeholder="@lang('global.search')">
 		</div>
 	</form>
 	@endif

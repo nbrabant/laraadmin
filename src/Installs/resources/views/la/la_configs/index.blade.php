@@ -31,6 +31,18 @@
 			{{ csrf_field() }}
 			<!-- text input -->
 			<div class="form-group">
+				<label>Auteur</label>
+				<input type="text" class="form-control" placeholder="Lara" name="author" value="{{$configs->author}}">
+			</div>
+			<div class="form-group">
+				<label>Site de l'auteur</label>
+				<input type="text" class="form-control" placeholder="Lara" name="author_site" value="{{$configs->author_site}}">
+			</div>
+			<div class="form-group">
+				<label>Email de l'auteur</label>
+				<input type="text" class="form-control" placeholder="Lara" name="author_email" value="{{$configs->author_email}}">
+			</div>
+			<div class="form-group">
 				<label>Sitename</label>
 				<input type="text" class="form-control" placeholder="Lara" name="sitename" value="{{$configs->sitename}}">
 			</div>
@@ -92,7 +104,7 @@
 					@endforeach
 				</select>
 			</div>
-			
+
 			<div class="form-group">
 				<label>Layout</label>
 				<select class="form-control" name="layout">
@@ -108,7 +120,7 @@
 			</div>
 		</div><!-- /.box-body -->
 		<div class="box-footer">
-			<button type="submit" class="btn btn-primary">Save</button>
+			<button type="submit" class="btn btn-primary">@lang('global.save')</button>
 		</div><!-- /.box-footer -->
 	</div><!-- /.box -->
 </form>

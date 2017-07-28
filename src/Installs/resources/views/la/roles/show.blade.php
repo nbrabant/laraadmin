@@ -84,7 +84,7 @@
 			@la_access("Roles", "edit")
 				<a href="{{ url(config('laraadmin.adminRoute') . '/roles/'.$role->id.'/edit') }}" class="btn btn-xs btn-edit btn-default"><i class="fa fa-pencil"></i></a><br>
 			@endla_access
-			
+
 			@la_access("Roles", "delete")
 				{{ Form::open(['route' => [config('laraadmin.adminRoute') . '.roles.destroy', $role->id], 'method' => 'delete', 'style'=>'display:inline']) }}
 					<button class="btn btn-default btn-delete btn-xs" type="submit"><i class="fa fa-times"></i></button>
@@ -97,7 +97,7 @@
 		<li class=""><a href="{{ url(config('laraadmin.adminRoute') . '/roles') }}" data-toggle="tooltip" data-placement="right" title="Back to Roles"><i class="fa fa-chevron-left"></i></a></li>
 		<li class="active"><a role="tab" data-toggle="tab" class="active" href="#tab-general-info" data-target="#tab-info"><i class="fa fa-bars"></i> General Info</a></li>
 		@role("SUPER_ADMIN")
-		<li class=""><a role="tab" data-toggle="tab" href="#tab-access" data-target="#tab-access"><i class="fa fa-key"></i> Access</a></li>
+		<li class=""><a role="tab" data-toggle="tab" href="#tab-access" data-target="#tab-access"><i class="fa fa-key"></i> @lang('global.access')</a></li>
 		@endrole
 	</ul>
 
@@ -122,7 +122,7 @@
 		<div role="tabpanel" class="tab-pane fade in p20 bg-white" id="tab-access">
 			<div class="guide1">
 				<span class="pull-left">Module Accesses for {{ $role->display_name }} Role</span>
-				<i class="fa fa-circle gray"></i> Invisible <i class="fa fa-circle orange"></i> Read-Only <i class="fa fa-circle green"></i> Write
+				<i class="fa fa-circle gray"></i> @lang('global.invisible') <i class="fa fa-circle orange"></i> @lang('global.readonly') <i class="fa fa-circle green"></i> @lang('global.write')
 			</div>
 			<form action="{{ url(config('laraadmin.adminRoute') . '/save_module_role_permissions/'.$role->id) }}" method="post">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -130,21 +130,21 @@
 					<thead>
 						<tr class="blockHeader">
 							<th width="30%">
-								<input class="alignTop" type="checkbox" id="module_select_all" id="module_select_all" checked="checked">&nbsp; Modules
+								<input class="alignTop" type="checkbox" id="module_select_all" id="module_select_all" checked="checked">&nbsp; @lang('global.modules')
 							</th>
 							<th width="14%">
-								<input type="checkbox" id="view_all" checked="checked">&nbsp; View
+								<input type="checkbox" id="view_all" checked="checked">&nbsp; @lang('global.view')
 							</th>
 							<th width="14%">
-								<input type="checkbox" id="create_all" checked="checked">&nbsp; Create
+								<input type="checkbox" id="create_all" checked="checked">&nbsp; @lang('global.create')
 							</th>
 							<th width="14%">
-								<input type="checkbox" id="edit_all" checked="checked">&nbsp; Edit
+								<input type="checkbox" id="edit_all" checked="checked">&nbsp; @lang('global.edit')
 							</th>
 							<th width="14%">
-							<input class="alignTop" id="delete_all" type="checkbox"  checked="checked">&nbsp; Delete
+							<input class="alignTop" id="delete_all" type="checkbox"  checked="checked">&nbsp; @lang('global.delete')
 							</th>
-							<th width="14%">Field Privileges</th>
+							<th width="14%">@lang('global.field_privileges')</th>
 						</tr>
 					</thead>
 					@foreach($modules_access as $module)
@@ -222,9 +222,9 @@
 $(function () {
 	@role("SUPER_ADMIN")
 	/* ================== Access Control ================== */
-	
+
 	$('.slider').slider();
-	
+
 	$(".slider.slider-horizontal").each(function(index) {
 		var field = $(this).next().attr("name");
 		var value = $(this).next().val();
@@ -247,7 +247,7 @@ $(function () {
 				break;
 		}
 	});
-	
+
 	$('.slider').bind('slideStop', function(event) {
 		if($(this).next().attr("name")) {
 			var field = $(this).next().attr("name");
@@ -267,8 +267,8 @@ $(function () {
 				$(this).addClass("green");
 			}
 		}
-	});	
-	
+	});
+
 	$("#module_select_all,  #view_all").on("change", function() {
 		$(".module_checkb").prop('checked', this.checked);
 		$(".view_checkb").prop('checked', this.checked);
@@ -279,9 +279,9 @@ $(function () {
 		$("#view_all").prop('checked', this.checked);
 		$("#create_all").prop('checked', this.checked);
 		$("#edit_all").prop('checked', this.checked);
-		$("#delete_all").prop('checked', this.checked);		
+		$("#delete_all").prop('checked', this.checked);
 	});
-	
+
 	$(".module_checkb,  .view_checkb").on("change", function() {
 		var val = $(this).attr( "module_id" );
 		$("#module_"+val).prop('checked', this.checked)
@@ -290,7 +290,7 @@ $(function () {
 		$("#module_edit_"+val).prop('checked', this.checked);
 		$("#module_delete_"+val).prop('checked', this.checked);
 	});
-	
+
 	$(".create_checkb,  .edit_checkb, .delete_checkb").on("change", function() {
 		var val = $(this).attr( "module_id" );
 		$(this).prop('checked', this.checked);
@@ -299,9 +299,9 @@ $(function () {
 		}
 		if(!$("#module_view_"+val).is(':checked')){
 			$("#module_view_"+val).prop('checked', this.checked);
-		}		
+		}
 	});
-	
+
 	$("#create_all").on("change", function() {
 		$(".create_checkb").prop('checked', this.checked);
 		if($('#create_all').is(':checked')){
@@ -311,7 +311,7 @@ $(function () {
 			$("#view_all").prop('checked', this.checked);
 		}
 	});
-	
+
 	$("#edit_all").on("change", function() {
 		$(".edit_checkb").prop('checked', this.checked);
 		if($('#edit_all').is(':checked')){
@@ -321,7 +321,7 @@ $(function () {
 			$("#view_all").prop('checked', this.checked);
 		}
 	});
-	
+
 	$("#delete_all").on("change", function() {
 		$(".delete_checkb").prop('checked', this.checked);
 		if($('#delete_all').is(':checked')){
@@ -331,8 +331,8 @@ $(function () {
 			$("#view_all").prop('checked', this.checked);
 		}
 	});
-	
-	$(".hide_row").on("click", function() { 
+
+	$(".hide_row").on("click", function() {
 		var val = $(this).attr( "module_id" );
 		var $icon = $(".hide_row[module_id="+val+"] > i");
 		if($('.module_fields_'+val).hasClass('hide')) {
@@ -349,4 +349,3 @@ $(function () {
 });
 </script>
 @endpush
-

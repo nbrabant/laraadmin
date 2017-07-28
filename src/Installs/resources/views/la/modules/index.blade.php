@@ -4,15 +4,15 @@
 use Dwij\Laraadmin\Models\Module;
 ?>
 
-@section("contentheader_title", "Modules")
-@section("contentheader_description", "modules listing")
-@section("section", "Modules")
-@section("sub_section", "Listing")
-@section("htmlheader_title", "Modules Listing")
+@section("contentheader_title", trans('global.modules'))
+@section("contentheader_description", trans('global.listing_type', ['type' => trans('global.module')]))
+@section("section", trans('global.modules'))
+@section("sub_section", trans('global.listing'))
+@section("htmlheader_title", trans('global.listing_type', ['type' => trans('global.module')]))
 
 @section("headerElems")
 <button class="btn btn-success btn-sm pull-right " data-toggle="modal" data-target="#AddExistModal">Module from Existing Table</button>
-<button class="btn btn-success btn-sm pull-right " style="margin-right:5px;" data-toggle="modal" data-target="#AddModal">Add Module</button>
+<button class="btn btn-success btn-sm pull-right " style="margin-right:5px;" data-toggle="modal" data-target="#AddModal">@lang('global.add_type', ['type' => trans('global.module')])</button>
 @endsection
 
 @section("main-content")
@@ -55,7 +55,7 @@ use Dwij\Laraadmin\Models\Module;
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<button type="button" class="close" data-dismiss="modal" aria-label="@lang('global.close')"><span aria-hidden="true">&times;</span></button>
 				<h4 class="modal-title" id="myModalLabel">Add Module Of Exist Table</h4>
 			</div>
 			{!! Form::open(['route' => config('laraadmin.adminRoute') . '.modules.store', 'id' => 'module-add-form']) !!}
@@ -89,7 +89,7 @@ use Dwij\Laraadmin\Models\Module;
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">@lang('global.close')</button>
 				{!! Form::submit( 'Submit', ['class'=>'btn btn-success']) !!}
 			</div>
 			{!! Form::close() !!}
@@ -101,8 +101,8 @@ use Dwij\Laraadmin\Models\Module;
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="myModalLabel">Add Module</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="@lang('global.close')"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel">@lang('global.add_type', ['type' => trans('global.module')])</h4>
 			</div>
 			{!! Form::open(['route' => config('laraadmin.adminRoute') . '.modules.store', 'id' => 'module-add-form']) !!}
 			<div class="modal-body">
@@ -121,7 +121,7 @@ use Dwij\Laraadmin\Models\Module;
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">@lang('global.close')</button>
 				{!! Form::submit( 'Submit', ['class'=>'btn btn-success']) !!}
 			</div>
 			{!! Form::close() !!}
@@ -134,10 +134,10 @@ use Dwij\Laraadmin\Models\Module;
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<button type="button" class="close" data-dismiss="modal" aria-label="@lang('global.close')">
 					<span aria-hidden="true">×</span>
 				</button>
-				<h4 class="modal-title">Module Delete</h4>
+				<h4 class="modal-title">@lang('global.delete_type', ['type' => trans('global.module')])</h4>
 			</div>
 			<div class="modal-body">
 				<p>Do you really want to delete module <b id="moduleNameStr" class="text-danger"></b> ?</p>
@@ -162,8 +162,8 @@ use Dwij\Laraadmin\Models\Module;
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="myModalLabel">Update Module</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="@lang('global.close')"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel">@lang('global.update_type', ['type' => trans('global.module')])</h4>
 			</div>
 			<form id="module-update-form" role="form" action="{{ url('module_edit_submit') }}" class="smart-form" novalidate="novalidate" method="post">
                 {{ csrf_field() }}
@@ -183,8 +183,8 @@ use Dwij\Laraadmin\Models\Module;
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-success save_edit_module" data-dismiss="modal">Save</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">@lang('global.close')</button>
+					<button type="button" class="btn btn-success save_edit_module" data-dismiss="modal">@lang('global.save')</button>
 				</div>
 			</form>
 		</div>
