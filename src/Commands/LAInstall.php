@@ -48,9 +48,7 @@ class LAInstall extends Command
     {
         parent::__construct();
 
-        $this->basepath = str_replace([base_path() . '\\', 'Commands'], '', __DIR__) . 'Installs';
-
-        $this->setComposerPath();
+        $this->basepath = str_replace([base_path() . '/', base_path() . '\\', 'Commands'], '', __DIR__) . 'Installs';
     }
 
     /**
@@ -104,6 +102,9 @@ class LAInstall extends Command
                 LAHelper::setenv("DB_USERNAME", $db_data['dbuser']);
                 LAHelper::setenv("DB_PASSWORD", $db_data['dbpass']);
             }
+
+            // Ask composer path or command here (default : composer)
+            $this->composer_path = $this->ask('Composer path / command', $this->getComposerPath());
 
             if(env('CACHE_DRIVER') != "array") {
                 config(['cache.default' => 'array']);
@@ -259,9 +260,10 @@ class LAInstall extends Command
 
                 // $this->call('db:seed', ['--class' => 'LaraAdminSeeder']);
 
-                // $this->line('Running seeds...');
-                // $this->info(exec('composer dump-autoload'));
+                $this->line('Running seeds...');
+                $this->info(exec('composer dump-autoload'));
                 $this->call('db:seed');
+
                 // Install Spatie Backup
                 $this->call('vendor:publish', ['--provider' => 'Spatie\Backup\BackupServiceProvider']);
 
@@ -468,15 +470,15 @@ class LAInstall extends Command
         }
     }
 
-    private function setComposerPath() {
+    private function getComposerPath() {
         if(PHP_OS == "Darwin") {
-            $this->composer_path = "/usr/bin/composer.phar";
+            return "/usr/bin/composer.phar";
         } else if(PHP_OS == "Linux") {
-            $this->composer_path = "/usr/bin/composer";
+            return "/usr/bin/composer";
         } else if(PHP_OS == "Windows") {
-            $this->composer_path = "composer";
+            return "composer";
         } else {
-            $this->composer_path = "composer";
+            return "composer";
         }
     }
 }
