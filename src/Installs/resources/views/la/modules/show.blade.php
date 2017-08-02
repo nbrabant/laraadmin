@@ -363,7 +363,7 @@ use Dwij\Laraadmin\Models\ModuleFields;
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">@lang('global.close')</button>
-				{!! Form::submit( 'Submit', ['class'=>'btn btn-success']) !!}
+				{!! Form::submit( trans('global.submit'), ['class'=>'btn btn-success']) !!}
 			</div>
 			{!! Form::close() !!}
 		</div>

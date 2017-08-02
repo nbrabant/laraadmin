@@ -11,7 +11,7 @@ use Dwij\Laraadmin\Models\Module;
 @section("htmlheader_title", trans('global.listing_type', ['type' => trans('global.module')]))
 
 @section("headerElems")
-<button class="btn btn-success btn-sm pull-right " data-toggle="modal" data-target="#AddExistModal">Module from Existing Table</button>
+<button class="btn btn-success btn-sm pull-right " data-toggle="modal" data-target="#AddExistModal">@lang('global.from_existing')</button>
 <button class="btn btn-success btn-sm pull-right " style="margin-right:5px;" data-toggle="modal" data-target="#AddModal">@lang('global.add_type', ['type' => trans('global.module')])</button>
 @endsection
 
@@ -23,11 +23,11 @@ use Dwij\Laraadmin\Models\Module;
 		<table id="dt_modules" class="table table-bordered">
 		<thead>
 		<tr class="success">
-			<th>ID</th>
-			<th>Name</th>
-			<th>Table</th>
-			<th>Items</th>
-			<th>Actions</th>
+			<th>@lang('global.id')</th>
+			<th>@lang('global.name')</th>
+			<th>@lang('global.table')</th>
+			<th>@lang('global.items')</th>
+			<th>@lang('global.actions')</th>
 		</tr>
 		</thead>
 		<tbody>
@@ -56,7 +56,7 @@ use Dwij\Laraadmin\Models\Module;
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="@lang('global.close')"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="myModalLabel">Add Module Of Exist Table</h4>
+				<h4 class="modal-title" id="myModalLabel">@lang('global.from_existing')</h4>
 			</div>
 			{!! Form::open(['route' => config('laraadmin.adminRoute') . '.modules.store', 'id' => 'module-add-form']) !!}
 			<div class="modal-body">
@@ -80,7 +80,7 @@ use Dwij\Laraadmin\Models\Module;
 						{{ Form::select("name", $table_module, $default_val, ['class'=>'form-control', 'rel' => '']) }}
 					</div>
 					<div class="form-group">
-						<label for="icon">Icon</label>
+						<label for="icon">@lang('global.icon')</label>
 						<div class="input-group">
 							<input class="form-control" placeholder="FontAwesome Icon" name="icon" type="text" value="fa-cube"  data-rule-minlength="1" required>
 							<span class="input-group-addon"></span>
@@ -90,7 +90,7 @@ use Dwij\Laraadmin\Models\Module;
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">@lang('global.close')</button>
-				{!! Form::submit( 'Submit', ['class'=>'btn btn-success']) !!}
+				{!! Form::submit( trans('global.submit'), ['class'=>'btn btn-success']) !!}
 			</div>
 			{!! Form::close() !!}
 		</div>
@@ -112,7 +112,7 @@ use Dwij\Laraadmin\Models\Module;
 						{{ Form::text("name", null, ['class'=>'form-control', 'placeholder'=>'Module Name', 'data-rule-minlength' => 2, 'data-rule-maxlength'=>20, 'required' => 'required']) }}
 					</div>
 					<div class="form-group">
-						<label for="icon">Icon</label>
+						<label for="icon">@lang('global.icon')</label>
 						<div class="input-group">
 							<input class="form-control" placeholder="FontAwesome Icon" name="icon" type="text" value="fa-cube"  data-rule-minlength="1" required>
 							<span class="input-group-addon"></span>
@@ -122,7 +122,7 @@ use Dwij\Laraadmin\Models\Module;
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">@lang('global.close')</button>
-				{!! Form::submit( 'Submit', ['class'=>'btn btn-success']) !!}
+				{!! Form::submit( trans('global.submit'), ['class'=>'btn btn-success']) !!}
 			</div>
 			{!! Form::close() !!}
 		</div>
@@ -174,7 +174,7 @@ use Dwij\Laraadmin\Models\Module;
 							<input type="text"  class="form-control module_label_edit" placeholder="Module Name" name="Module Name" value=""/>
 						</div>
 						<div class="form-group">
-							<label for="icon">Icon</label>
+							<label for="icon">@lang('global.icon')</label>
 							<div class="input-group">
 								<input type="text" class="form-control module_icon_edit"  placeholder="FontAwesome Icon" name="icon"  value=""  data-rule-minlength="1" required>
 								<span class="input-group-addon update-icon"></span>

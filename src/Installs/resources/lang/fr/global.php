@@ -18,6 +18,7 @@ return [
     'no' => 'Non',
     'not_set' => 'Non Défini',
     'search' => 'Recherche',
+    'icon' => 'Icône',
 
     // actions
     'save' => 'Enregistrer',
@@ -35,6 +36,7 @@ return [
     'readonly' => 'Lecture seule',
     'write' => 'Lecture-écriture',
     'field_privileges' => 'Authorisations',
+    'submit' => 'Enregistrer',
 
     // menus
     'module' => 'Module',
@@ -46,12 +48,20 @@ return [
     'backup' => 'Backups',
     'profile' => 'Profil',
 
+    // table field
+    'id' => 'ID',
+    'name' => 'Nom',
+    'table' => 'Table',
+    'items' => 'Objets',
+    'actions' => 'Actions',
+
+
     'home' => 'Accueil',
     'homepage' => 'Page d\'accueil',
     'dashboard' => 'Tableau de bord',
     'go_back' => 'Retour',
 
-
+    'from_existing' => 'Module depuis une table existante',
 
 
 ];

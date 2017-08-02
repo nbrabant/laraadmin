@@ -47,7 +47,7 @@ use Dwij\Laraadmin\Models\Module;
 									<input class="form-control" placeholder="Label" name="name" type="text" value=""  data-rule-minlength="1" required>
 								</div>
 								<div class="form-group">
-									<label for="icon" style="font-weight:normal;">Icon</label>
+									<label for="icon" style="font-weight:normal;">@lang('global.icon')</label>
 									<div class="input-group">
 										<input class="form-control" placeholder="FontAwesome Icon" name="icon" type="text" value="fa-cube"  data-rule-minlength="1" required>
 										<span class="input-group-addon"></span>
@@ -93,7 +93,7 @@ use Dwij\Laraadmin\Models\Module;
 						<input class="form-control" placeholder="Label" name="name" type="text" value=""  data-rule-minlength="1" required>
 					</div>
 					<div class="form-group">
-						<label for="icon" style="font-weight:normal;">Icon</label>
+						<label for="icon" style="font-weight:normal;">@lang('global.icon')</label>
 						<div class="input-group">
 							<input class="form-control" placeholder="FontAwesome Icon" name="icon" type="text" value="fa-cube"  data-rule-minlength="1" required>
 							<span class="input-group-addon"></span>
@@ -103,7 +103,7 @@ use Dwij\Laraadmin\Models\Module;
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">@lang('global.close')</button>
-				{!! Form::submit( 'Submit', ['class'=>'btn btn-success']) !!}
+				{!! Form::submit( trans('global.submit'), ['class'=>'btn btn-success']) !!}
 			</div>
 			{!! Form::close() !!}
 		</div>
