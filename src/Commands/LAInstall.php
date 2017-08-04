@@ -13,6 +13,7 @@ use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Dwij\Laraadmin\Helpers\LAHelper;
+use Dwij\Laraadmin\LATranslate;
 use Eloquent;
 use DB;
 
@@ -24,6 +25,8 @@ use DB;
  */
 class LAInstall extends Command
 {
+    use \Dwij\Laraadmin\Helpers\FileManager;
+
     // Model Names to be handled during Install
     var $modelsInstalled = ["User", "Role", "Permission", "Employee", "Department", "Upload", "Organization", "Backup"];
 
@@ -225,24 +228,7 @@ class LAInstall extends Command
                 $this->copyFolder($from . "/resources/views", $to . "/resources/views");
 
                 $this->line('Copying localisation resources: (lang directory)...');
-                // @TODO : make this code dynamic :
-                // list lang resources
-                // If file exists, add only the new localisation lines
-                // overelse, copy them on the directory
-                $this->copyFile($from . "/resources/lang/fr.json", 				$to . "/resources/lang/fr.json");
-                $this->copyFile($from . "/resources/lang/fr/global.php", 		$to . "/resources/lang/fr/global.php");
-                $this->copyFile($from . "/resources/lang/fr/auth.php",   		$to . "/resources/lang/fr/auth.php");
-                $this->copyFile($from . "/resources/lang/fr/errors.php", 		$to . "/resources/lang/fr/errors.php");
-                $this->copyFile($from . "/resources/lang/fr/emails.php", 		$to . "/resources/lang/fr/emails.php");
-                $this->copyFile($from . "/resources/lang/fr/pagination.php", 	$to . "/resources/lang/fr/pagination.php");
-
-				$this->copyFile($from . "/resources/lang/en.json", 				$to . "/resources/lang/en.json");
-                $this->copyFile($from . "/resources/lang/en/global.php", 		$to . "/resources/lang/en/global.php");
-                $this->copyFile($from . "/resources/lang/en/auth.php",   		$to . "/resources/lang/en/auth.php");
-                $this->copyFile($from . "/resources/lang/en/errors.php", 		$to . "/resources/lang/en/errors.php");
-                $this->copyFile($from . "/resources/lang/en/emails.php", 		$to . "/resources/lang/en/emails.php");
-                $this->copyFile($from . "/resources/lang/en/pagination.php", 	$to . "/resources/lang/en/pagination.php");
-                // end todo
+                LATranslate::getInstance()->copyTranslations($from, $to);
 
                 // Checking database
                 $this->line('Checking database connectivity...');
@@ -366,107 +352,6 @@ class LAInstall extends Command
                 $this->error("LAInstall::handle exception: " . $e);
                 throw new Exception("LAInstall::handle Unable to install : " . $msg, 1);
             }
-        }
-    }
-
-    /**
-     * Copy Folder contents
-     *
-     * @param $from from folder
-     * @param $to to folder
-     */
-    private function copyFolder($from, $to)
-    {
-        // $this->info("copyFolder: ($from, $to)");
-        LAHelper::recurse_copy($from, $to);
-    }
-
-    /**
-     * Replace Folder contents by deleting content of to folder first
-     *
-     * @param $from from folder
-     * @param $to to folder
-     */
-    private function replaceFolder($from, $to)
-    {
-        // $this->info("replaceFolder: ($from, $to)");
-        if(file_exists($to)) {
-            LAHelper::recurse_delete($to);
-        }
-        LAHelper::recurse_copy($from, $to);
-    }
-
-    /**
-     * Copy file contents. If file not exists create it.
-     *
-     * @param $from from file
-     * @param $to to file
-     */
-    private function copyFile($from, $to)
-    {
-        // $this->info("copyFile: ($from, $to)");
-        if(!file_exists(dirname($to))) {
-            $this->info("mkdir: (" . dirname($to) . ")");
-            mkdir(dirname($to));
-        }
-        copy($from, $to);
-    }
-
-    /**
-     * Get file contents
-     *
-     * @param $from file name
-     * @return string file contents in string
-     */
-    private function openFile($from)
-    {
-        $md = file_get_contents($from);
-        return $md;
-    }
-
-    /**
-     * Append content of 'from' file to 'to' file
-     *
-     * @param $from from file
-     * @param $to to file
-     */
-    private function appendFile($from, $to)
-    {
-        // $this->info("appendFile: ($from, $to)");
-
-        $md = file_get_contents($from);
-
-        file_put_contents($to, $md, FILE_APPEND);
-    }
-
-    /**
-     * Copy contents from one file to another
-     *
-     * @param $from content to be copied from this file
-     * @param $to content will be written to this file
-     */
-    private function writeFile($from, $to)
-    {
-        $md = file_get_contents($from);
-        file_put_contents($to, $md);
-    }
-
-    /**
-     * does file contains given text
-     *
-     * @param $filePath file to search text for
-     * @param $text text to be searched in file
-     * @return bool return true if text found in given file
-     */
-    private function fileContains($filePath, $text)
-    {
-        // TODO: Method not working properly
-
-        $fileData = file_get_contents($filePath);
-        if(strpos($fileData, $text) === false) {
-            return true;
-        } else {
-            return false;
         }
     }
 
