@@ -8,7 +8,7 @@
 
 @section("headerElems")
 @la_access("Uploads", "create")
-	<button id="AddNewUploads" class="btn btn-success btn-sm pull-right">@lang('global.add_new')</button>
+	<button id="AddNewUploads" class="btn btn-success btn-sm pull-right">@lang('global.add_new_file')</button>
 @endla_access
 @endsection
 

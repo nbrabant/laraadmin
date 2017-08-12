@@ -6,7 +6,7 @@ return [
     'page_header_here' => 'Page Header here',
     'toogle_nav' => 'Toggle navigation',
     'is_public' => 'Is public',
-    'add_new' => 'Add New',
+    'add_new_file' => 'Add New file',
     'add_type' => 'Add :type',
     'update_type' => ':type Update',
     'delete_type' => ':type Delete',

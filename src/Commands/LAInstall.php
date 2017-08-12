@@ -217,9 +217,9 @@ class LAInstall extends Command
 
                 $this->line('Copying seeds...');
                 $this->copyFile($from . "/seeds/DatabaseSeeder.php",      $to . "/database/seeds/DatabaseSeeder.php");
-        				$this->copyFile($from . "/seeds/ConfigTableSeeder.php",   $to . "/database/seeds/ConfigTableSeeder.php");
-        				$this->copyFile($from . "/seeds/AdmintabTableSeeder.php", $to . "/database/seeds/AdmintabTableSeeder.php");
-        				$this->copyFile($from . "/seeds/RoleTableSeeder.php",     $to . "/database/seeds/RoleTableSeeder.php");
+				$this->copyFile($from . "/seeds/ConfigTableSeeder.php",   $to . "/database/seeds/ConfigTableSeeder.php");
+				$this->copyFile($from . "/seeds/AdmintabTableSeeder.php", $to . "/database/seeds/AdmintabTableSeeder.php");
+				$this->copyFile($from . "/seeds/RoleTableSeeder.php",     $to . "/database/seeds/RoleTableSeeder.php");
 
 
                 // resources
@@ -356,7 +356,7 @@ class LAInstall extends Command
     }
 
     private function getComposerPath() {
-        if(PHP_OS == "Darwin") {
+        if (PHP_OS == "Darwin") {
             return "/usr/bin/composer.phar";
         } else if(PHP_OS == "Linux") {
             return "/usr/bin/composer";

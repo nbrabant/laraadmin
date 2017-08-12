@@ -370,7 +370,7 @@
                     <div class="btn-group">
                       <button class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></button>
                       <ul class="dropdown-menu pull-right" role="menu">
-                        <li><a href="#">@lang('global.add_new') event</a></li>
+                        <li><a href="#">@lang('global.add_new_file') event</a></li>
                         <li><a href="#">Clear events</a></li>
                         <li class="divider"></li>
                         <li><a href="#">View calendar</a></li>

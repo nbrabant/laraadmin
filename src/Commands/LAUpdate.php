@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Dwij\Laraadmin\Helpers\LAHelper;
+use Dwij\Laraadmin\LATranslate;
 use Eloquent;
 use DB;
 
@@ -35,13 +36,11 @@ class LAUpdate extends Command
 
 	protected $composer_path;
 
-	public function __construct()
+    public function __construct()
     {
         parent::__construct();
 
-        $this->basepath = str_replace([base_path() . '\\', 'Commands'], '', __DIR__) . 'Installs';
-
-        $this->setComposerPath();
+        $this->basepath = str_replace([base_path() . '/', base_path() . '\\', 'Commands'], '', __DIR__) . 'Installs';
     }
 
 	public function handle()
@@ -57,9 +56,22 @@ class LAUpdate extends Command
 			$this->line("\nDB Assistant:");
 
 
-      // Ask to copy language file
+            // Ask composer path or command here (default : composer)
+            $this->composer_path = $this->ask('Composer path / command', $this->getComposerPath());
 
-      // If not, ask merging this files
+
+            // Ask to change la templates
+
+            // Ask to copy language file
+            if ($this->confirm("Want to replace the lang files ?", true)) {
+                $this->line('Copying localisation resources: (lang directory)...');
+                LATranslate::getInstance()->copyTranslations($from, $to);
+            }
+            // If not, ask merging this files
+            elseif ($this->confirm("Want to merge the lang files ?", true)) {
+                # code...
+            }
+
 
 
 		} catch (Exception $e) {
@@ -73,15 +85,15 @@ class LAUpdate extends Command
 		}
 	}
 
-    private function setComposerPath() {
-        if(PHP_OS == "Darwin") {
-            $this->composer_path = "/usr/bin/composer.phar";
+    private function getComposerPath() {
+        if (PHP_OS == "Darwin") {
+            return "/usr/bin/composer.phar";
         } else if(PHP_OS == "Linux") {
-            $this->composer_path = "/usr/bin/composer";
+            return "/usr/bin/composer";
         } else if(PHP_OS == "Windows") {
-            $this->composer_path = "composer";
+            return "composer";
         } else {
-            $this->composer_path = "composer";
+            return "composer";
         }
     }
 
