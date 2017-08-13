@@ -33,7 +33,7 @@ class LATranslate
 
 		foreach ($list as $directory) {
 			foreach (\File::files($directory) as $file) {
-				$this->copyFile($file, str_replace($from, $to, $file);
+				$this->copyFile($file, str_replace($from, $to, $file));
 			}
 		}
 	}

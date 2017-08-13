@@ -4,7 +4,7 @@
 @section("contentheader_description", "")
 @section("section", "Configuration")
 @section("sub_section", "")
-@section("htmlheader_title", "Configuration")
+@section("htmlheader_title", trans('laconfig.configuration'))
 
 @section("headerElems")
 @endsection

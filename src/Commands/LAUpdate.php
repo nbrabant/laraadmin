@@ -57,10 +57,14 @@ class LAUpdate extends Command
 
 
             // Ask composer path or command here (default : composer)
-            $this->composer_path = $this->ask('Composer path / command', $this->getComposerPath());
+            // $this->composer_path = $this->ask('Composer path / command', $this->getComposerPath());
 
 
             // Ask to change la templates
+            if ($this->confirm("Want to replace the resources views ?", true)) {
+                $this->line('Copying views resources: (view directory)...');
+                $this->copyFolder($from . "/resources/views", $to . "/resources/views");
+            }
 
             // Ask to copy language file
             if ($this->confirm("Want to replace the lang files ?", true)) {
@@ -68,9 +72,9 @@ class LAUpdate extends Command
                 LATranslate::getInstance()->copyTranslations($from, $to);
             }
             // If not, ask merging this files
-            elseif ($this->confirm("Want to merge the lang files ?", true)) {
-                # code...
-            }
+            // elseif ($this->confirm("Want to merge the lang files ?", true)) {
+            //     # code...
+            // }
 
 
 
