@@ -84,7 +84,7 @@
 			@la_access("Organizations", "edit")
 				<a href="{{ url(config('laraadmin.adminRoute') . '/organizations/'.$organization->id.'/edit') }}" class="btn btn-xs btn-edit btn-default"><i class="fa fa-pencil"></i></a><br>
 			@endla_access
-			
+
 			@la_access("Organizations", "delete")
 				{{ Form::open(['route' => [config('laraadmin.adminRoute') . '.organizations.destroy', $organization->id], 'method' => 'delete', 'style'=>'display:inline']) }}
 					<button class="btn btn-default btn-delete btn-xs" type="submit"><i class="fa fa-times"></i></button>
@@ -147,8 +147,8 @@
 					quora plaxo ideeli hulu weebly balihoo...
 					</div>
 					<div class="timeline-footer">
-					<a class="btn btn-primary btn-xs">Read more</a>
-					<a class="btn btn-danger btn-xs">Delete</a>
+					<a class="btn btn-primary btn-xs">@lang('global.read_more')</a>
+					<a class="btn btn-danger btn-xs">@lang('global.delete')</a>
 					</div>
 				</div>
 				</li>
@@ -216,7 +216,7 @@
 			</ul>
 			<!--<div class="text-center p30"><i class="fa fa-list-alt" style="font-size: 100px;"></i> <br> No posts to show</div>-->
 		</div>
-		
+
 	</div>
 	</div>
 	</div>

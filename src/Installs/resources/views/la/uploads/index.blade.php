@@ -62,7 +62,7 @@
                                 <input type="hidden" name="file_id" value="0">
                                 <div class="form-group">
                                     <label for="filename">File Name</label>
-                                    <input class="form-control" placeholder="File Name" name="filename" type="text" @if(!config('laraadmin.uploads.allow_filename_change') || !Module::hasFieldAccess("Uploads", "name", "write")) readonly @endif value="">
+                                    <input class="form-cont@lang('global.delete')rol" placeholder="File Name" name="filename" type="text" @if(!config('laraadmin.uploads.allow_filename_change') || !Module::hasFieldAccess("Uploads", "name", "write")) readonly @endif value="">
                                 </div>
                                 <div class="form-group">
                                     <label for="url">URL</label>
@@ -86,7 +86,7 @@
 			<div class="modal-footer">
 				<a class="btn btn-success" id="downFileBtn" href="">Download</a>
 				@la_access("Uploads", "delete")
-                <button type="button" class="btn btn-danger" id="delFileBtn">Delete</button>
+                <button type="button" class="btn btn-danger" id="delFileBtn">@lang('global.delete')</button>
 				@endla_access
                 <button type="button" class="btn btn-default" data-dismiss="modal">@lang('global.close')</button>
 			</div>

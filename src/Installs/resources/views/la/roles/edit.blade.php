@@ -6,7 +6,7 @@
 @section("contentheader_description", $role->$view_col)
 @section("section", "Roles")
 @section("section_url", url(config('laraadmin.adminRoute') . '/roles'))
-@section("sub_section", "Edit")
+@section("sub_section", trans('global.edit'))
 
 @section("htmlheader_title", "Role Edit : ".$role->$view_col)
 
@@ -24,7 +24,7 @@
 
 <div class="box">
 	<div class="box-header">
-		
+
 	</div>
 	<div class="box-body">
 		<div class="row">
@@ -51,7 +51,7 @@
 <script>
 $(function () {
 	$("#role-edit-form").validate({
-		
+
 	});
 });
 </script>

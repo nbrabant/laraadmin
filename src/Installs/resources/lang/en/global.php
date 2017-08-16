@@ -28,6 +28,7 @@ return [
     'access' => 'Access',
     'sort' => 'Sort',
     'roles' => 'Roles',
+    'read_more' => 'Read more',
     'view' => 'View',
     'create' => 'Create',
     'edit' => 'Edit',

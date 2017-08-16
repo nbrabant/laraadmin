@@ -6,7 +6,7 @@
 @section("contentheader_description", $permission->$view_col)
 @section("section", "Permissions")
 @section("section_url", url(config('laraadmin.adminRoute') . '/permissions'))
-@section("sub_section", "Edit")
+@section("sub_section", trans('global.edit'))
 
 @section("htmlheader_title", "Permissions Edit : ".$permission->$view_col)
 
@@ -24,14 +24,14 @@
 
 <div class="box">
 	<div class="box-header">
-		
+
 	</div>
 	<div class="box-body">
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
 				{!! Form::model($permission, ['route' => [config('laraadmin.adminRoute') . '.permissions.update', $permission->id ], 'method'=>'PUT', 'id' => 'permission-edit-form']) !!}
 					@la_form($module)
-					
+
 					{{--
 					@la_input($module, 'name')
 					@la_input($module, 'display_name')
@@ -53,7 +53,7 @@
 <script>
 $(function () {
 	$("#permission-edit-form").validate({
-		
+
 	});
 });
 </script>

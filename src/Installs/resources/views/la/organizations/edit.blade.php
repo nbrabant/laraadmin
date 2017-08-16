@@ -6,7 +6,7 @@
 @section("contentheader_description", $organization->$view_col)
 @section("section", "Organizations")
 @section("section_url", url(config('laraadmin.adminRoute') . '/organizations'))
-@section("sub_section", "Edit")
+@section("sub_section", trans('global.edit'))
 
 @section("htmlheader_title", "Organizations Edit : ".$organization->$view_col)
 
@@ -24,14 +24,14 @@
 
 <div class="box">
 	<div class="box-header">
-		
+
 	</div>
 	<div class="box-body">
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
 				{!! Form::model($organization, ['route' => [config('laraadmin.adminRoute') . '.organizations.update', $organization->id ], 'method'=>'PUT', 'id' => 'organization-edit-form']) !!}
 					@la_form($module)
-					
+
 					{{--
 					@la_input($module, 'name')
 					@la_input($module, 'email')
@@ -61,7 +61,7 @@
 <script>
 $(function () {
 	$("#organization-edit-form").validate({
-		
+
 	});
 });
 </script>
